@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText Email,Password;
-    private Button Login;
+    private Button login;
 
     String user,pwd;
 
@@ -23,11 +23,11 @@ public class LoginActivity extends AppCompatActivity {
         Email = findViewById(R.id.etemail);
         Password = findViewById(R.id.etpassword);
 
-        Login = findViewById(R.id.btn_login);
+        login = findViewById(R.id.btn_login);
 
 
 
-        Login.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user = Email.getText().toString().trim();
@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Login.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user = Email.getText().toString().trim();
