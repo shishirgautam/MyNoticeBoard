@@ -3,10 +3,12 @@ package com.shishir.onlinenoticeboard;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText Email,Password;
@@ -50,6 +52,16 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!user.isEmpty()&& !pwd.isEmpty()){
                     if (user.equals("admin")&& pwd.equals("admin")) {
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("username", Email.getText().toString());
+                        editor.putString("password",Password.getText().toString());
+                        editor.commit();
+                        //Toast.makeText(LoginActivity.this, "sucessfully save", Toast.LENGTH_SHORT).show();
+
+
                         Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
                         startActivity(intent);
 
