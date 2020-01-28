@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.shishir.onlinenoticeboard.model.userModel;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText Email,Password;
@@ -28,30 +31,17 @@ public class LoginActivity extends AppCompatActivity {
         login = findViewById(R.id.btn_login);
 
 
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user = Email.getText().toString().trim();
                 pwd = Password.getText().toString().trim();
 
-            }
-        });
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                user = Email.getText().toString().trim();
-                pwd = Password.getText().toString().trim();
-//                if (user.equals("ad")&& pwd.equals("ad")) {
-//                        Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
-//                        startActivity(intent);
-//
-//                    }
-
-
-                if (!user.isEmpty()&& !pwd.isEmpty()){
-                    if (user.equals("admin")&& pwd.equals("admin")) {
+                if (!TextUtils.isEmpty(Email.getText().toString() )) {
+                    if (!TextUtils.isEmpty(Password.getText().toString() )) {
+                        userModel userModel = new userModel(Email.getText().toString(),
+                                Password.getText().toString());
+                                login(userModel);
 
                         SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -59,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("username", Email.getText().toString());
                         editor.putString("password",Password.getText().toString());
                         editor.commit();
-                        //Toast.makeText(LoginActivity.this, "sucessfully save", Toast.LENGTH_SHORT).show();
 
 
                         Intent intent = new Intent(LoginActivity.this,ViewsActivity.class);
@@ -80,6 +69,12 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+
+    }
+    public boolean login(userModel u) {
+
+        Toast.makeText( this, "Either username or password is incorrect", Toast.LENGTH_SHORT ).show();
+        return false;
 
     }
     }

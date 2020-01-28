@@ -4,8 +4,8 @@
     <string name="btn_link_to_login">Already registred! Login Me.</string>
     <string name="title_activity_views">ViewsActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_view">View</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_view">Post</string>
+    <string name="title_profile">Profile</string>
 
 
 </resources>
