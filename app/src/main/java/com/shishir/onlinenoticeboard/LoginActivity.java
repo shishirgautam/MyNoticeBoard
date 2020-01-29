@@ -15,7 +15,7 @@ import com.shishir.onlinenoticeboard.model.userModel;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText Email,Password;
-    private Button login;
+    private Button login,link;
 
     String user,pwd;
 
@@ -29,6 +29,16 @@ public class LoginActivity extends AppCompatActivity {
         Password = findViewById(R.id.etpassword);
 
         login = findViewById(R.id.btn_login);
+        link = findViewById(R.id.btnLink);
+
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         login.setOnClickListener(new View.OnClickListener() {
