@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.shishir.onlinenoticeboard.model.InputUser;
 import com.shishir.onlinenoticeboard.model.userModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -52,18 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                         userModel userModel = new userModel(Email.getText().toString(),
                                 Password.getText().toString());
                                 login(userModel);
-
-                        SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                        editor.putString("username", Email.getText().toString());
-                        editor.putString("password",Password.getText().toString());
-                        editor.commit();
-
-
-                        Intent intent = new Intent(LoginActivity.this,ViewsActivity.class);
-                        startActivity(intent);
-
                     }
                 }
 
@@ -83,8 +72,23 @@ public class LoginActivity extends AppCompatActivity {
     }
     public boolean login(userModel u) {
 
+
+           Intent intent = new Intent(LoginActivity.this, ViewsActivity.class);
+           startActivity(intent);
+
+
         Toast.makeText( this, "Either username or password is incorrect", Toast.LENGTH_SHORT ).show();
         return false;
+
+    }
+    void Store(userModel u) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences( "User", MODE_PRIVATE );
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString( "username", u.getEmail() );
+        editor.putString( "password", u.getPassword() );
+        //Toast.makeText( this, "saved user", Toast.LENGTH_SHORT ).show();
+        editor.commit();
 
     }
     }
