@@ -1,6 +1,6 @@
 package com.shishir.onlinenoticeboard.api;
 
-import com.shishir.onlinenoticeboard.model.Inputuser;
+import com.shishir.onlinenoticeboard.model.InputUser;
 import com.shishir.onlinenoticeboard.model.LoginResult;
 
 import retrofit2.Call;
@@ -15,5 +15,5 @@ public interface RetrofitInterface {
     Call<LoginResult>executeLogin(@Field("email") String username, @Field("password") String password);
 
     @POST("/users/register")
-    Call<LoginResult> register(@Body Inputuser body);
+    Call<LoginResult> register(@Body InputUser body);
 }
