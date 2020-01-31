@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 public interface RetrofitInterface {
     @POST("/users/login")
     @FormUrlEncoded
-    Call<LoginResult>executeLogin(@Field("email") String username, @Field("password") String password);
+    Call<LoginResult>Loginexecute(@Field("email") String username, @Field("password") String password);
 
     @POST("/users/register")
     Call<LoginResult> register(@Body InputUser body);
