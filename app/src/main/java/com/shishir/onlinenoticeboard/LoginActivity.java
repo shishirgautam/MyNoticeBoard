@@ -11,13 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.shishir.onlinenoticeboard.api.LoginBLL;
 import com.shishir.onlinenoticeboard.model.InputUser;
 import com.shishir.onlinenoticeboard.model.userModel;
+import com.shishir.onlinenoticeboard.strictMode.StrictModeC;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText Email,Password;
     private Button login,link;
-
+    public static String Token = "";
     String user,pwd;
 
 
@@ -71,16 +73,25 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     public boolean login(userModel u) {
-
-
-           Intent intent = new Intent(LoginActivity.this, ViewsActivity.class);
-           startActivity(intent);
-
-
+        LoginBLL loginBLL = new LoginBLL();
+        StrictModeC.StrictMode();
+        if (loginBLL.checkUser( u.getEmail(), u.getPassword() )) {
+            Store( u );
+            Intent intent = new Intent( LoginActivity.this, DashboardActivity.class );
+            Token = loginBLL.Token;
+            startActivity( intent );
+            //Toast.makeText( this, "welcome "+loginBLL.Token,Toast.LENGTH_SHORT ).show();
+            return true;
+        }
         Toast.makeText( this, "Either username or password is incorrect", Toast.LENGTH_SHORT ).show();
         return false;
 
     }
+
+
+
+
+
     void Store(userModel u) {
 
         SharedPreferences sharedPreferences = getSharedPreferences( "User", MODE_PRIVATE );
