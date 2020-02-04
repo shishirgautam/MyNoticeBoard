@@ -9,12 +9,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.shishir.onlinenoticeboard.api.LoginBLL;
-import com.shishir.onlinenoticeboard.model.InputUser;
-import com.shishir.onlinenoticeboard.model.userModel;
-import com.shishir.onlinenoticeboard.strictMode.StrictModeC;
+import com.shishir.onlinenoticeboard.model.UserModel;
+
 
 public class LoginActivity extends AppCompatActivity {
     private EditText Email,Password;
@@ -52,9 +49,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!TextUtils.isEmpty(Email.getText().toString() )) {
                     if (!TextUtils.isEmpty(Password.getText().toString() )) {
-                        userModel userModel = new userModel(Email.getText().toString(),
+                        UserModel userModel = new UserModel(Email.getText().toString(),
                                 Password.getText().toString());
-                                login(userModel);
+                                //login(UserModel);
                     }
                 }
 
@@ -72,27 +69,27 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-    public boolean login(userModel u) {
-        LoginBLL loginBLL = new LoginBLL();
-        StrictModeC.StrictMode();
-        if (loginBLL.checkUser( u.getEmail(), u.getPassword() )) {
-            Store( u );
-            Intent intent = new Intent( LoginActivity.this, DashboardActivity.class );
-            Token = loginBLL.Token;
-            startActivity( intent );
-            //Toast.makeText( this, "welcome "+loginBLL.Token,Toast.LENGTH_SHORT ).show();
-            return true;
-        }
-        Toast.makeText( this, "Either username or password is incorrect", Toast.LENGTH_SHORT ).show();
-        return false;
-
-    }
-
-
-
+//    public boolean login(UserModel u) {
+//        BLL loginBLL = new BLL();
+//        StrictModeC.StrictMode();
+//        if (loginBLL.checkUser( u.getEmail(), u.getPassword() )) {
+//            Store( u );
+//            Intent intent = new Intent( LoginActivity.this, DashboardActivity.class );
+//            Token = loginBLL.Token;
+//            startActivity( intent );
+//            //Toast.makeText( this, "welcome "+loginBLL.Token,Toast.LENGTH_SHORT ).show();
+//            return true;
+//        }
+//        Toast.makeText( this, "Either username or password is incorrect", Toast.LENGTH_SHORT ).show();
+//        return false;
+//
+//    }
+//
 
 
-    void Store(userModel u) {
+
+
+    void Store(UserModel u) {
 
         SharedPreferences sharedPreferences = getSharedPreferences( "User", MODE_PRIVATE );
         SharedPreferences.Editor editor = sharedPreferences.edit();

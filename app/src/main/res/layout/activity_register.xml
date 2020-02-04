@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="Username"
         android:inputType="text"
         android:textSize="22sp" />
 
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Email"
         android:inputType="textPassword"
         android:textSize="22sp" />
 
@@ -55,9 +55,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint=" Password"
         android:inputType="textPassword"
         android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/etmobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint=" Mobile No:"
+        android:inputType="textPassword"
+        android:textSize="22sp" />
+
 
 
     <Button
