@@ -5,7 +5,15 @@ private String username;
 private String email;
 private String password;
 private  String image;
+private String mobile_no;
+private String  per_address;
+private String temp_address;
 
+    public InputUser(String mobile_no, String per_address, String temp_address) {
+        this.mobile_no = mobile_no;
+        this.per_address = per_address;
+        this.temp_address = temp_address;
+    }
 
     public InputUser(String username, String email, String password, String image) {
         this.username = username;
@@ -44,5 +52,29 @@ private  String image;
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getMobile_no() {
+        return mobile_no;
+    }
+
+    public void setMobile_no(String mobile_no) {
+        this.mobile_no = mobile_no;
+    }
+
+    public String getPer_address() {
+        return per_address;
+    }
+
+    public void setPer_address(String per_address) {
+        this.per_address = per_address;
+    }
+
+    public String getTemp_address() {
+        return temp_address;
+    }
+
+    public void setTemp_address(String temp_address) {
+        this.temp_address = temp_address;
     }
 }

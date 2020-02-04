@@ -1,8 +1,8 @@
 package com.shishir.onlinenoticeboard;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,23 +10,25 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shishir.onlinenoticeboard.model.userModel;
+import com.shishir.onlinenoticeboard.api.BLL;
+import com.shishir.onlinenoticeboard.model.UserModel;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText Email, Password, Confirmpassword;
+    private EditText username, email, password,mobileno;
     private Button Signup, LinkToLogin;
-    String user,pwd;
+    Context context;
+    //String user,pwd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-
+        context = this;
         //binding
-        Email = findViewById(R.id.etusername);
-        Password = findViewById(R.id.uppassword);
-        Confirmpassword = findViewById(R.id.con_password);
+        username = findViewById(R.id.etusername);
+        email = findViewById(R.id.etemail);
+        password = findViewById(R.id.etpassword);
         Signup = findViewById(R.id.btn_signup);
         LinkToLogin = findViewById(R.id.btnLinkToLoginScreen);
 
@@ -40,34 +42,22 @@ public class RegisterActivity extends AppCompatActivity {
         Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user = Email.getText().toString().trim();
-                pwd = Password.getText().toString().trim();
+                UserModel model = new UserModel(username.getText().toString(),"email.com","password","dummy image","9827349","temporary Address","permanenent Address");
+                BLL BLL = new BLL();
 
-                if (!TextUtils.isEmpty(Email.getText().toString() )) {
-                    if (!TextUtils.isEmpty(Password.getText().toString() )) {
-                        userModel userModel = new userModel(Email.getText().toString(),
-                                Password.getText().toString());
-                        register(userModel);
-                    }
-                }
-
-                else{
-                    if (user.isEmpty()){
-                        Email.setError("Enter User Name");
-                    }
-                    if (pwd.isEmpty()){
-                        Email.setError("Enter Password ");
-                    }
+                if(BLL.Register(model)){
+                    Toast.makeText(context,"Register Successful",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(context,"User Not Registered",Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
 
 
     }
-    public boolean register(userModel u) {
+    public boolean register(UserModel u) {
 
-        Toast.makeText( this, "clicked register button", Toast.LENGTH_SHORT ).show();
+        Toast.makeText( this, "clicked Register button", Toast.LENGTH_SHORT ).show();
         return false;
     }
 }
