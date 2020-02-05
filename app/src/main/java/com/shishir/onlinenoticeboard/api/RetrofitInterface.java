@@ -3,6 +3,7 @@ package com.shishir.onlinenoticeboard.api;
 import com.shishir.onlinenoticeboard.model.InputUser;
 import com.shishir.onlinenoticeboard.model.LoginResult;
 import com.shishir.onlinenoticeboard.model.UserModel;
+import com.shishir.onlinenoticeboard.response.LoginRegisterResponse;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -16,8 +17,14 @@ public interface RetrofitInterface {
     @FormUrlEncoded
     @POST("/users/login")
     Call<UserModel> Login(
-            @Field("email") String username,
-            @Field("password") String password);
+            @Field("username") String username,
+            @Field("password")String password);
+
+    @FormUrlEncoded
+    @POST("/users/login")
+    Call<LoginRegisterResponse> checkUser(
+            @Body  UserModel model
+    );
 
     @FormUrlEncoded
     @POST("users/register/")
@@ -29,6 +36,8 @@ public interface RetrofitInterface {
             @Field("mobile_number")String mobile_number,
             @Field("temporary_address") String temporary_addrrss,
             @Field("permanent_address")String permanent_address);
+
+
 }
 
 

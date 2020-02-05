@@ -47,9 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 UserModel model = new UserModel(username.getText().toString(),
                         email.getText().toString(),password.getText().toString()
-                        ,"dummy image", mobileno.getText().toString(),
-                        "temporary Address",
-                        "permanenent Address");
+                        ,"dummyimage.jpg", mobileno.getText().toString(),
+                        "temporary Addreess",
+                        "permanenent Addreess");
 
                 StrictModeC.StrictMode();
                         BLL BLL = new BLL();

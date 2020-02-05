@@ -25,7 +25,7 @@ public class UserModel {
     private String mobileNumber;
     @SerializedName("temporary_addreess")
     @Expose
-    private String temporaryAddreess;
+    private String temporary_addreess;
     @SerializedName("permanent_address")
     @Expose
     private String permanentAddress;
@@ -38,13 +38,13 @@ public class UserModel {
         this.password = password;
     }
 
-    public UserModel(String username, String email, String password, String image, String mobileNumber, String temporaryAddreess, String permanentAddress) {
+    public UserModel(String username, String email, String password, String image, String mobileNumber, String temporary_address, String permanentAddress) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.image = image;
         this.mobileNumber = mobileNumber;
-        this.temporaryAddreess = temporaryAddreess;
+        this.temporary_addreess = temporary_address;
         this.permanentAddress = permanentAddress;
     }
 
@@ -97,11 +97,11 @@ public class UserModel {
     }
 
     public String getTemporaryAddreess() {
-        return temporaryAddreess;
+        return temporary_addreess;
     }
 
-    public void setTemporaryAddreess(String temporaryAddreess) {
-        this.temporaryAddreess = temporaryAddreess;
+    public void setTemporaryAddreess(String temporary_addreess) {
+        this.temporary_addreess = temporary_addreess;
     }
 
     public String getPermanentAddress() {
