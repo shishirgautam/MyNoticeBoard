@@ -2,22 +2,24 @@ package com.shishir.onlinenoticeboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.shishir.onlinenoticeboard.api.BLL;
 import com.shishir.onlinenoticeboard.model.UserModel;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText Email,Password;
+    private EditText Username,Password;
     private Button login,link;
     public static String Token = "";
-    String user,pwd;
+    Context context;
+
 
 
     @Override
@@ -25,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Email = findViewById(R.id.etemail);
+        Username = findViewById(R.id.etusername);
         Password = findViewById(R.id.etpassword);
 
         login = findViewById(R.id.btn_login);
@@ -44,28 +46,19 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user = Email.getText().toString().trim();
-                pwd = Password.getText().toString().trim();
-
-                if (!TextUtils.isEmpty(Email.getText().toString() )) {
-                    if (!TextUtils.isEmpty(Password.getText().toString() )) {
-                        UserModel userModel = new UserModel(Email.getText().toString(),
-                                Password.getText().toString());
-                                //login(UserModel);
-                    }
-                }
-
-                else{
-                    if (user.isEmpty()){
-                        Email.setError("Enter User Name");
-                    }
-                    if (pwd.isEmpty()){
-                        Email.setError("Enter Password ");
-                    }
+                BLL BLL = new BLL();
+                UserModel model = new UserModel(Username.getText().toString(),Password.getText().toString());
+                if(BLL.LoginBLL(model)){
+                    Toast.makeText(context,"Login Successful",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, ViewsActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(context,"Login Failed",Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
+
+
 
 
     }
@@ -89,15 +82,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    void Store(UserModel u) {
-
-        SharedPreferences sharedPreferences = getSharedPreferences( "User", MODE_PRIVATE );
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString( "username", u.getEmail() );
-        editor.putString( "password", u.getPassword() );
-        //Toast.makeText( this, "saved user", Toast.LENGTH_SHORT ).show();
-        editor.commit();
-
-    }
+//    void Store(UserModel u) {
+//
+//        SharedPreferences sharedPreferences = getSharedPreferences( "User", MODE_PRIVATE );
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString( "username", u.getEmail() );
+//        editor.putString( "password", u.getPassword() );
+//        //Toast.makeText( this, "saved user", Toast.LENGTH_SHORT ).show();
+//        editor.commit();
+//
+//    }
     }
 

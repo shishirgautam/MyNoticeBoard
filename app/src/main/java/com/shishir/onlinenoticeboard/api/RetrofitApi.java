@@ -12,7 +12,7 @@ public class RetrofitApi {
 
     public RetrofitInterface getRetrofitInterface() {
          Retrofit.Builder builder =  new Retrofit.Builder()
-                .baseUrl("http://10.0.02.2:8899/")
+                .baseUrl("http://10.0.2.2:8899")
                 .addConverterFactory(GsonConverterFactory.create());
          Retrofit retrofit = builder.build();
          return retrofit.create(RetrofitInterface.class);

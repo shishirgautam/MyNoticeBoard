@@ -12,17 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface RetrofitInterface {
-    @FormUrlEncoded
-    @POST("/users/Register")
-    Call<ResponseBody>Loginexecute(
-            @Field("username") String username,
-            @Field("email")String email,
-            @Field("password") String password,
-            @Field("image")String image,
-            @Field("mobile_number")String mobile_number,
-            @Field("temporary_address") String temporary_addrrss,
-            @Field("permanent_address")String permanent_address
-    );
+
     @FormUrlEncoded
     @POST("/users/login")
     Call<UserModel> Login(
@@ -30,7 +20,7 @@ public interface RetrofitInterface {
             @Field("password") String password);
 
     @FormUrlEncoded
-    @POST("/users/Register")
+    @POST("users/register/")
     Call<UserModel> Register(
             @Field("username") String username,
             @Field("email")String email,
@@ -38,6 +28,11 @@ public interface RetrofitInterface {
             @Field("image")String image,
             @Field("mobile_number")String mobile_number,
             @Field("temporary_address") String temporary_addrrss,
-            @Field("permanent_address")String permanent_address
-    );
+            @Field("permanent_address")String permanent_address);
 }
+
+
+
+
+
+

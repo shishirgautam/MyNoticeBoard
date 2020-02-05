@@ -9,17 +9,17 @@ private String mobile_no;
 private String  per_address;
 private String temp_address;
 
-    public InputUser(String mobile_no, String per_address, String temp_address) {
-        this.mobile_no = mobile_no;
+    public InputUser( String per_address, String temp_address) {
         this.per_address = per_address;
         this.temp_address = temp_address;
     }
 
-    public InputUser(String username, String email, String password, String image) {
+    public InputUser(String username, String email, String password, String image,String mobile_no) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.image = image;
+        this.mobile_no = mobile_no;
     }
 
     public String getUsername() {
