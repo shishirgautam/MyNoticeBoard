@@ -1,6 +1,7 @@
 package com.shishir.onlinenoticeboard;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -11,16 +12,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.shishir.onlinenoticeboard.StrictMode.StrictModeC;
 import com.shishir.onlinenoticeboard.adapter.NoticeAdapter;
 import com.shishir.onlinenoticeboard.api.BLL;
+import com.shishir.onlinenoticeboard.api.RetrofitApi;
+import com.shishir.onlinenoticeboard.api.RetrofitInterface;
 import com.shishir.onlinenoticeboard.model.NoticeModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ViewsActivity extends AppCompatActivity {
 
-
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_views);
 //        BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -32,16 +40,33 @@ public class ViewsActivity extends AppCompatActivity {
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 //        NavigationUI.setupWithNavController(navView, navController);
 
-        RecyclerView notices = findViewById(R.id.notices_container);
-        notices.setLayoutManager(new LinearLayoutManager(this));
 
-        StrictModeC.StrictMode();
-        BLL bll = new BLL();
-        List<NoticeModel> noticeModelList = new ArrayList<>();
-        noticeModelList.addAll(bll.NoticeBLL());
+        recyclerView=findViewById(R.id.notices_container);
 
-        NoticeAdapter noticeAdapter = new NoticeAdapter(this, noticeModelList);
-        notices.setAdapter(noticeAdapter);
+        RetrofitInterface api = RetrofitApi.getInstance().create(RetrofitInterface.class);
+        Call<List<NoticeModel>> listCall = api.Notice(BLL.token);
+        listCall.enqueue(new Callback<List<NoticeModel>>() {
+            @Override
+            public void onResponse(Call<List<NoticeModel>> call, Response<List<NoticeModel>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Token has expired, login again", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<NoticeModel> modelList = response.body();
+                NoticeAdapter adapter = new NoticeAdapter(ViewsActivity.this, modelList);
+
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ViewsActivity.this));
+            }
+
+            @Override
+            public void onFailure(Call<List<NoticeModel>> call, Throwable t) {
+
+            }
+        });
+
+
 
 
     }

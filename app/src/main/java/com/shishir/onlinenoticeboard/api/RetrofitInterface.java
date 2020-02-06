@@ -7,16 +7,19 @@ import com.shishir.onlinenoticeboard.response.LoginRegisterResponse;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface RetrofitInterface {
 
     @FormUrlEncoded
-    @POST("/users/login")
+    @POST("/users/login/")
     Call<UserModel> Login(
             @Field("username") String username,
             @Field("password") String password);
@@ -26,8 +29,13 @@ public interface RetrofitInterface {
             @Body UserModel model
     );
 
-    @GET("/api/web/auth/posts")
-    Call<List<NoticeModel>> Notice();
+    @GET("/api/web/auth/posts/")
+    Call<List<NoticeModel>> Notice(
+            @Header("auth-token")String token
+    );
+
+//    @GET("/api/...")
+//    Call<Response> token(@Header("Authorization") String token);
 
     @FormUrlEncoded
     @POST("users/register/")

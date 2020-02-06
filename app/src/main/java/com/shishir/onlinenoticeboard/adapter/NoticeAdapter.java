@@ -28,7 +28,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
     @NonNull
     @Override
     public NoticeViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_home, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.detail_activity, viewGroup, false);
         return new NoticeViewHolder(view);
     }
 
@@ -52,7 +52,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
         public NoticeViewHolder(@NonNull View noticeView) {
             super(noticeView);
 
-            imgview = noticeView.findViewById(R.id.imgview);
+//            imgview = noticeView.findViewById(R.id.imgview);
             title = noticeView.findViewById(R.id.title);
             description = noticeView.findViewById(R.id.desc);
 
