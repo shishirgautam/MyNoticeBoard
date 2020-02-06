@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shishir.onlinenoticeboard.R;
-import com.shishir.onlinenoticeboard.api.RetrofitApi;
 import com.shishir.onlinenoticeboard.model.NoticeModel;
 
 import java.util.List;
@@ -23,45 +22,39 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
 
     public NoticeAdapter(Context context, List<NoticeModel> noticeModels) {
         this.context = context;
-        NoticeModels = noticeModels;
+        this.NoticeModels = noticeModels;
     }
 
     @NonNull
     @Override
     public NoticeViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_views, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_home, viewGroup, false);
         return new NoticeViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NoticeViewHolder noticeViewHolder, int i) {
-        final NoticeModel model = NoticeModel.get(i);
-
-        try {
-            RetrofitApi url = new RetrofitApi();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        final NoticeModel model = NoticeModels.get(i);
+        noticeViewHolder.title.setText(model.getTitle());
+        noticeViewHolder.description.setText(model.getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return NoticeModels.size();
     }
 
     public class NoticeViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView imgview;
-        TextView title, description,comment;
+        TextView title, description, comment;
 
         public NoticeViewHolder(@NonNull View noticeView) {
             super(noticeView);
 
             imgview = noticeView.findViewById(R.id.imgview);
-            title = noticeView.findViewById(R.id.titleid);
-            description = noticeView.findViewById(R.id.descid);
-            comment = noticeView.findViewById(R.id.commentid);
+            title = noticeView.findViewById(R.id.title);
+            description = noticeView.findViewById(R.id.desc);
 
 
         }

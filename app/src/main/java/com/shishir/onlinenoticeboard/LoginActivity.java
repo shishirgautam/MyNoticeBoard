@@ -2,9 +2,7 @@ package com.shishir.onlinenoticeboard;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.shishir.onlinenoticeboard.StrictMode.StrictModeC;
 import com.shishir.onlinenoticeboard.api.BLL;
 import com.shishir.onlinenoticeboard.model.UserModel;
-import com.shishir.onlinenoticeboard.model.checkUser;
 import com.shishir.onlinenoticeboard.response.LoginRegisterResponse;
 
 
@@ -47,16 +44,16 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        });
 
-        SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");
-
-        if (token.equals(" ")) {
-
-        } else {
-            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
+//        String token = sharedPreferences.getString("token", "");
+//
+//        if (token.equals(" ")) {
+//
+//        } else {
+//            Intent intent = new Intent(LoginActivity.this, ViewsActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
 
         link.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,55 +72,48 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-        private void check(){
-            String user = Username.getText().toString();
-            String pass = Password.getText().toString();
+    private void check() {
+        String user = Username.getText().toString();
+        String pass = Password.getText().toString();
 
-            if (TextUtils.isEmpty(Username.getText())) {
-                Username.setError("Enter username");
-                return;
+        if (TextUtils.isEmpty(Username.getText())) {
+            Username.setError("Enter username");
+            return;
 
-            } else if (TextUtils.isEmpty(Password.getText())) {
-                Password.setError("Enter password");
-                return;
-            }
-
-
-            StrictModeC.StrictMode();
-            checkUser checkUser = new checkUser(user, pass);
-            model = checkUser.checkUser();
-            if (checkUser.checkUser() != null) {
-
-                Intent intent = new Intent(LoginActivity.this, ViewsActivity.class);
-                startActivity(intent);
-
-                SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-//                editor.putString("username", model.getResult().getUsername());
-//                editor.putString("id", model.getResult().getId());
-//                editor.putString("password", model.getResult().getPassword());
-//                editor.putString("token", "Token " + model.getToken());
-//                editor.commit();
-
-
-
-
-                SharedPreferences sharedPreferences1 = getSharedPreferences("User", MODE_PRIVATE);
-                String tk = sharedPreferences1.getString("token", "");
-                Token = tk;
-                finish();
-
-            } else {
-                Toast.makeText(this, "Invalid username and password", Toast.LENGTH_SHORT).show();
-
-
-            }
-
+        } else if (TextUtils.isEmpty(Password.getText())) {
+            Password.setError("Enter password");
+            return;
         }
 
+        UserModel userModel = new UserModel(user, pass);
+
+        StrictModeC.StrictMode();
+        BLL bll = new BLL();
+        boolean loggedIn = bll.LoginBLL(userModel);
+        Toast.makeText(this, loggedIn + "", Toast.LENGTH_SHORT).show();
+        if (loggedIn) {
+            Intent intent = new Intent(LoginActivity.this, ViewsActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Invalid login", Toast.LENGTH_SHORT).show();
         }
+//            checkUser checkUser = new checkUser(user, pass);
+//            model = checkUser.checkUser();
+//            if (checkUser.checkUser() != null) {
+//
+//
+//
+//
+//
+//            } else {
+//                Toast.makeText(this, "Invalid username and password", Toast.LENGTH_SHORT).show();
+//
+//
+//            }
+
+    }
+
+}
 
 
 

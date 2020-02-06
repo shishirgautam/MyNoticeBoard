@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/navigation_post"
         android:name="com.shishir.onlinenoticeboard.ui.comment.CommentFragment"
-        android:label="Post"
+        android:label="Comment"
         tools:layout="@layout/fragment_comment" />
 
     <fragment
