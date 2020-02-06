@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             model = checkUser.checkUser();
             if (checkUser.checkUser() != null) {
 
-                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ViewsActivity.class);
                 startActivity(intent);
 
                 SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);

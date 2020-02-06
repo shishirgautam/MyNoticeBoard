@@ -2,14 +2,18 @@ package com.shishir.onlinenoticeboard.api;
 
 import com.shishir.onlinenoticeboard.model.InputUser;
 import com.shishir.onlinenoticeboard.model.LoginResult;
+import com.shishir.onlinenoticeboard.model.NoticeModel;
 import com.shishir.onlinenoticeboard.model.UserModel;
 import com.shishir.onlinenoticeboard.response.LoginRegisterResponse;
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface RetrofitInterface {
@@ -25,6 +29,12 @@ public interface RetrofitInterface {
     Call<LoginRegisterResponse> checkUser(
             @Body  UserModel model
     );
+
+
+
+    @GET("/api/web/auth/posts/")
+    Call<List<NoticeModel>> Notice();
+
 
     @FormUrlEncoded
     @POST("users/register/")
