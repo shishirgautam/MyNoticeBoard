@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         boolean loggedIn = bll.LoginBLL(userModel);
         Toast.makeText(this, loggedIn + "", Toast.LENGTH_SHORT).show();
         if (loggedIn) {
-            Intent intent = new Intent(LoginActivity.this, ViewsActivity.class);
+            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
             startActivity(intent);
         } else {
             Toast.makeText(this, "Invalid login", Toast.LENGTH_SHORT).show();
