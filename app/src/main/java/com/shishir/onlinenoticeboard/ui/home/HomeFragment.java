@@ -18,10 +18,6 @@ import com.shishir.onlinenoticeboard.R;
 public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     private  TextView Title,Description,Comment;
-
-
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
