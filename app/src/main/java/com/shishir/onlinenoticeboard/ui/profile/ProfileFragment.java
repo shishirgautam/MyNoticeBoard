@@ -15,14 +15,19 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.shishir.onlinenoticeboard.R;
+import com.shishir.onlinenoticeboard.model.UserModel;
 
 public class ProfileFragment extends Fragment {
     private ImageView imgprofile;
     private EditText pUsername,pEmail,pAddress,pMob;
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            ViewGroup container,
+            Bundle savedInstanceState
+    ) {
+
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
@@ -35,6 +40,8 @@ public class ProfileFragment extends Fragment {
         pMob = root.findViewById(R.id.epmobile);
 
         return root;
+
+     //UserModel uModel = new UserModel();
     }
 
 

@@ -5,11 +5,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -18,20 +13,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.shishir.onlinenoticeboard.adapter.NoticeAdapter;
-import com.shishir.onlinenoticeboard.api.BLL;
-import com.shishir.onlinenoticeboard.api.RetrofitApi;
-import com.shishir.onlinenoticeboard.api.RetrofitInterface;
-import com.shishir.onlinenoticeboard.model.NoticeModel;
 import com.shishir.onlinenoticeboard.ui.comment.CommentFragment;
 import com.shishir.onlinenoticeboard.ui.home.HomeFragment;
 import com.shishir.onlinenoticeboard.ui.profile.ProfileFragment;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity {
     Context context;

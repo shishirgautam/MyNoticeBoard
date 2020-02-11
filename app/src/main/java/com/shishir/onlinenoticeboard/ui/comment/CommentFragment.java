@@ -17,12 +17,18 @@ import com.shishir.onlinenoticeboard.R;
 public class CommentFragment extends Fragment {
 
     private CommentViewModel homeViewModel;
+    String postid;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(CommentViewModel.class);
         View root = inflater.inflate(R.layout.fragment_comment, container, false);
+
+        Bundle bundle = getArguments();
+        if(bundle!=null){
+            postid = bundle.getString("postid");
+        }
         final TextView textView = root.findViewById(R.id.text_dashboard);
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
