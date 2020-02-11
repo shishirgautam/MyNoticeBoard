@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity {
+    Context context;
     private RecyclerView recyclerView;
     private ActionBar toolbar;
 
@@ -41,7 +43,9 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         BottomNavigationView navView = findViewById(R.id.nav_view);
+//        toolbar.setTitle("Home");
         toolbar = getSupportActionBar();
+        context = this;
 
 
         // Passing each menu ID as a set of Ids because each
@@ -60,27 +64,32 @@ public class DashboardActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem){
             Fragment fragment;
             switch (menuItem.getItemId()) {
-                case R.id.navigation_homes:
-                    toolbar.setTitle("Home");
-                    fragment = new HomeFragment();
-                    loadFragment(fragment);
+                case R.id.navigation_home:
+                    Toast.makeText(context,"Home",Toast.LENGTH_SHORT).show();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.dashboard_container,new HomeFragment())
+                            .commit();
                     return true;
 
                 case R.id.navigation_comment:
-                    toolbar.setTitle("Comment");
-                    fragment = new CommentFragment();
-                    loadFragment(fragment);
+                    Toast.makeText(context,"comment",Toast.LENGTH_SHORT).show();
+//                    toolbar.setTitle("Comment");
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.dashboard_container,new CommentFragment())
+                            .commit();
                     return true;
 
                 case R.id.navigation_profile:
-                    toolbar.setTitle("Profile");
-                    fragment = new ProfileFragment();
-                    loadFragment(fragment);
+                    Toast.makeText(context,"profile",Toast.LENGTH_SHORT).show();
+    //                toolbar.setTitle("Profile");
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.dashboard_container,new ProfileFragment())
+                            .commit();
                     return true;
 
 
             }
-            return true;
+            return false;
 
             }
             private void loadFragment(Fragment fragment) {
@@ -95,41 +104,28 @@ public class DashboardActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        recyclerView=findViewById(R.id.notices_container);
-
-        RetrofitInterface api = RetrofitApi.getInstance().create(RetrofitInterface.class);
-        Call<List<NoticeModel>> listCall = api.Notice(BLL.token);
-        listCall.enqueue(new Callback<List<NoticeModel>>() {
-            @Override
-            public void onResponse(Call<List<NoticeModel>> call, Response<List<NoticeModel>> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Token has expired, login again", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                List<NoticeModel> modelList = response.body();
-                NoticeAdapter adapter = new NoticeAdapter(DashboardActivity.this, modelList);
-
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this));
-            }
-
-            @Override
-            public void onFailure(Call<List<NoticeModel>> call, Throwable t) {
-
-            }
-        });
+//        RetrofitInterface api = RetrofitApi.getInstance().create(RetrofitInterface.class);
+//        Call<List<NoticeModel>> listCall = api.Notice(BLL.token);
+//        listCall.enqueue(new Callback<List<NoticeModel>>() {
+//            @Override
+//            public void onResponse(Call<List<NoticeModel>> call, Response<List<NoticeModel>> response) {
+//                if (!response.isSuccessful()) {
+//                    Toast.makeText(getApplicationContext(), "Token has expired, login again", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                List<NoticeModel> modelList = response.body();
+//                NoticeAdapter adapter = new NoticeAdapter(DashboardActivity.this, modelList);
+//
+//                recyclerView.setAdapter(adapter);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this));
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<NoticeModel>> call, Throwable t) {
+//
+//            }
+//        });
 
 
 
