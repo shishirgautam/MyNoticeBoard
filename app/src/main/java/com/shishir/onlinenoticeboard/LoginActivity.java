@@ -35,26 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         Password = findViewById(R.id.etpassword);
         login = findViewById(R.id.btn_login);
         link = findViewById(R.id.btnLink);
-
-//        link.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
-//        String token = sharedPreferences.getString("token", "");
-//
-//        if (token.equals(" ")) {
-//
-//        } else {
-//            Intent intent = new Intent(LoginActivity.this, ViewsActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,19 +77,6 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Invalid login", Toast.LENGTH_SHORT).show();
         }
-//            checkUser checkUser = new checkUser(user, pass);
-//            model = checkUser.checkUser();
-//            if (checkUser.checkUser() != null) {
-//
-//
-//
-//
-//
-//            } else {
-//                Toast.makeText(this, "Invalid username and password", Toast.LENGTH_SHORT).show();
-//
-//
-//            }
 
     }
 

@@ -37,6 +37,11 @@ public class UserModel {
         this.username = username;
         this.password = password;
     }
+//
+//    public UserModel(String username,String email,String mobileNumber){
+//        this.username = username;
+//        this.email = email;
+//        this.mobileNumber = mobileNumber;}
 
     public UserModel(String username, String email, String password, String image, String mobileNumber, String temporary_address, String permanentAddress) {
         this.username = username;

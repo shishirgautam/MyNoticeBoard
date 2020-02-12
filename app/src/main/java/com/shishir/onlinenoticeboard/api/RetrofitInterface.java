@@ -7,13 +7,11 @@ import com.shishir.onlinenoticeboard.response.LoginRegisterResponse;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface RetrofitInterface {
@@ -49,11 +47,7 @@ public interface RetrofitInterface {
             @Field("permanent_address") String permanent_address);
 
     @GET("users/register/")
-    Call<List<UserModel>> User(
-
-    );
-
-
+    Call<List<UserModel> >getUserProfiles();
 
 }
 
