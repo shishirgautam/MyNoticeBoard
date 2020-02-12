@@ -10,7 +10,7 @@ public class CommentViewModel extends ViewModel {
 
     public CommentViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Comment fragment");
+        //mText.setValue("This is Comment Fragment");
     }
 
     public LiveData<String> getText() {
