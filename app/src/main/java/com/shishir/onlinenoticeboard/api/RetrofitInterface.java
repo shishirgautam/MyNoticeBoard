@@ -47,7 +47,7 @@ public interface RetrofitInterface {
             @Field("permanent_address") String permanent_address);
 
     @GET("users/register/")
-    Call<List<UserModel> >getUserProfiles();
+    Call<UserModel> getUserProfiles();
 
 }
 
