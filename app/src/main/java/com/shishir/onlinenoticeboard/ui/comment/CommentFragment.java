@@ -23,19 +23,15 @@ public class CommentFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(CommentViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_comment, container, false);
+        View root = inflater.inflate(R.layout.noticedetail_viewholder, container, false);
 
         Bundle bundle = getArguments();
         if(bundle!=null){
             postid = bundle.getString("postid");
         }
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+
+
         return root;
     }
 }

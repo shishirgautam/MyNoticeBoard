@@ -1,5 +1,6 @@
 package com.shishir.onlinenoticeboard.api;
 
+import com.shishir.onlinenoticeboard.model.CommentModel;
 import com.shishir.onlinenoticeboard.model.NoticeModel;
 import com.shishir.onlinenoticeboard.model.UserModel;
 import com.shishir.onlinenoticeboard.response.LoginRegisterResponse;
@@ -46,8 +47,17 @@ public interface RetrofitInterface {
             @Field("temporary_address") String temporary_addrrss,
             @Field("permanent_address") String permanent_address);
 
-    @GET("users/register/")
+    @GET("users/me/")
     Call<UserModel> getUserProfiles();
+
+
+    @FormUrlEncoded
+    @POST("api/web/auth/comments/{id}/posts/")
+    Call<CommentModel> postComments(
+            @Field("comments") String comments
+         //   @Field("postId") String postId
+    );
+
 
 }
 

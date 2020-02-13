@@ -36,16 +36,6 @@ public class ProfileFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
         context = getContext();
-
-
-//       // binding
-//        imgprofile = root.findViewById(R.id.imgpro);
-//        pUsername = root.findViewById(R.id.epusername);
-//        pEmail = root.findViewById(R.id.epemail);
-//        pAddress = root.findViewById(R.id.epaddress);
-//        pMob = root.findViewById(R.id.epmobile);
-
-
         final RetrofitInterface api = RetrofitApi.getInstance().create(RetrofitInterface.class);
         StrictModeC.StrictMode();
 
@@ -55,10 +45,11 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(context, "Code " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Code " + response.code(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "profile is loading", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                StrictModeC.StrictMode();
+
                 try {
                     String Id = response.body().getId();
                     String pUsername = response.body().getUsername();

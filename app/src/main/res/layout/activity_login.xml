@@ -26,7 +26,8 @@
         android:ems="10"
         android:layout_marginTop="20dp"
         android:inputType="text"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:text="sisir1"/>
 
 
 
@@ -38,7 +39,8 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:text="sisir123"/>
 
     <Button
         android:id="@+id/btn_login"

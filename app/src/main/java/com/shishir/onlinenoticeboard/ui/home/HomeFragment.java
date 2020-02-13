@@ -1,6 +1,7 @@
 package com.shishir.onlinenoticeboard.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shishir.onlinenoticeboard.DashboardActivity;
+import com.shishir.onlinenoticeboard.LoginActivity;
 import com.shishir.onlinenoticeboard.R;
 import com.shishir.onlinenoticeboard.api.BLL;
 import com.shishir.onlinenoticeboard.api.RetrofitApi;
@@ -23,6 +26,7 @@ import com.shishir.onlinenoticeboard.model.NoticeModel;
 import com.shishir.onlinenoticeboard.ui.comment.CommentFragment;
 
 import java.util.List;
+import java.util.zip.Inflater;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -52,6 +56,7 @@ public class HomeFragment extends Fragment {
                 List<NoticeModel> modelList = response.body();
                 NoticeAdapter adapter = new NoticeAdapter(getContext(),modelList);
 
+                Toast.makeText(context, String.valueOf(modelList.size()), Toast.LENGTH_SHORT).show();
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -65,16 +70,6 @@ public class HomeFragment extends Fragment {
         return root;
 
 
-    }
-
-    public void StartComment(String PostID){
-        CommentFragment commentFragment = new CommentFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("postid",PostID);
-        commentFragment.setArguments(bundle);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.dashboard_container,commentFragment)
-                .commit();
     }
 
 
@@ -95,14 +90,15 @@ public class HomeFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull NoticeViewHolder noticeViewHolder, int i) {
+        public void onBindViewHolder(@NonNull final NoticeViewHolder noticeViewHolder, int i) {
             final NoticeModel model = NoticeModels.get(i);
+            noticeViewHolder.textViewId.setText(model.getId());
             noticeViewHolder.title.setText(model.getTitle());
             noticeViewHolder.description.setText(model.getDescription());
             noticeViewHolder.buttonComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    StartComment(noticeViewHolder.textViewId.getText().toString());
                 }
             });
         }
@@ -112,21 +108,29 @@ public class HomeFragment extends Fragment {
             return NoticeModels.size();
         }
 
+        public void StartComment(String PostID){
+            CommentFragment commentFragment = new CommentFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("postid",PostID);
+            commentFragment.setArguments(bundle);
+            ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.dashboard_container,commentFragment)
+                    .commit();
+        }
+
         public class NoticeViewHolder extends RecyclerView.ViewHolder {
 
             CircleImageView imgview;
-            TextView title, description, comment;
+            TextView title, description, comment ,textViewId;
             Button buttonComment;
 
             public NoticeViewHolder(@NonNull View noticeView) {
                 super(noticeView);
-
     //            imgview = noticeView.findViewById(R.id.imgview);
+                textViewId = noticeView.findViewById(R.id.pid);
                 title = noticeView.findViewById(R.id.title);
                 description = noticeView.findViewById(R.id.desc);
                 buttonComment = noticeView.findViewById(R.id.commid);
-
-
             }
         }
     }
