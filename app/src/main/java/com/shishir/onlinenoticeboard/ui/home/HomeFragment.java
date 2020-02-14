@@ -37,8 +37,7 @@ public class HomeFragment extends Fragment {
     Context context;
     RecyclerView recyclerView;
     private  TextView Title,Description,Comment;
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = root.findViewById(R.id.notices_container);
 
@@ -56,7 +55,6 @@ public class HomeFragment extends Fragment {
                 List<NoticeModel> modelList = response.body();
                 NoticeAdapter adapter = new NoticeAdapter(getContext(),modelList);
 
-                Toast.makeText(context, String.valueOf(modelList.size()), Toast.LENGTH_SHORT).show();
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -68,8 +66,6 @@ public class HomeFragment extends Fragment {
             }
         });
         return root;
-
-
     }
 
 
@@ -98,7 +94,8 @@ public class HomeFragment extends Fragment {
             noticeViewHolder.buttonComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    StartComment(noticeViewHolder.textViewId.getText().toString());
+                    StartComment(noticeViewHolder.textViewId.getText().toString(),
+                            noticeViewHolder.title.getText().toString(),noticeViewHolder.description.getText().toString());
                 }
             });
         }
@@ -108,10 +105,12 @@ public class HomeFragment extends Fragment {
             return NoticeModels.size();
         }
 
-        public void StartComment(String PostID){
+        public void StartComment(String PostID, String title, String post){
             CommentFragment commentFragment = new CommentFragment();
             Bundle bundle = new Bundle();
             bundle.putString("postid",PostID);
+            bundle.putString("title",title);
+            bundle.putString("post",post);
             commentFragment.setArguments(bundle);
             ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction()
                     .replace(R.id.dashboard_container,commentFragment)
@@ -122,7 +121,7 @@ public class HomeFragment extends Fragment {
 
             CircleImageView imgview;
             TextView title, description, comment ,textViewId;
-            Button buttonComment;
+            Button buttonComment,pushcomment;
 
             public NoticeViewHolder(@NonNull View noticeView) {
                 super(noticeView);
@@ -130,6 +129,7 @@ public class HomeFragment extends Fragment {
                 textViewId = noticeView.findViewById(R.id.pid);
                 title = noticeView.findViewById(R.id.title);
                 description = noticeView.findViewById(R.id.desc);
+                pushcomment = noticeView.findViewById(R.id.pushcomment);
                 buttonComment = noticeView.findViewById(R.id.commid);
             }
         }

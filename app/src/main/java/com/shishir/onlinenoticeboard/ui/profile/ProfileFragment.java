@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.shishir.onlinenoticeboard.R;
 import com.shishir.onlinenoticeboard.StrictMode.StrictModeC;
+import com.shishir.onlinenoticeboard.api.BLL;
 import com.shishir.onlinenoticeboard.api.RetrofitApi;
 import com.shishir.onlinenoticeboard.api.RetrofitInterface;
 import com.shishir.onlinenoticeboard.model.UserModel;
@@ -24,7 +25,7 @@ import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
     private ImageView imgprofile;
-    private EditText pUsername, pEmail, pAddress, pMob;
+    private TextView pUsername, pEmail, pAddress, pMob;
     Context context;
 
 
@@ -34,35 +35,37 @@ public class ProfileFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
+        pUsername = root.findViewById(R.id.fragment_profile_userName);
+        pEmail = root.findViewById(R.id.fragment_profile_email);
+        pAddress = root.findViewById(R.id.fragment_profile_address);
+        pMob = root.findViewById(R.id.fragment_profile_mobileNo);
+
 
         context = getContext();
         final RetrofitInterface api = RetrofitApi.getInstance().create(RetrofitInterface.class);
         StrictModeC.StrictMode();
 
 
-        final Call<UserModel> getUserProfiles = api.getUserProfiles();
+        final Call<UserModel> getUserProfiles = api.getUserProfiles(BLL.token);
         getUserProfiles.enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(getContext(), "Code " + response.code(), Toast.LENGTH_SHORT).show();
-                   // Toast.makeText(getContext(), "profile is loading", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getContext(), "profile is loading", Toast.LENGTH_SHORT).show();
                     return;
-                }
+                } else {
+                    pUsername.setText(response.body().getUsername());
+                    pEmail.setText(response.body().getEmail());
+                    pMob.setText(response.body().getMobileNumber());
+                    pAddress.setText(response.body().getPermanentAddress());
 
-                try {
-                    String Id = response.body().getId();
-                    String pUsername = response.body().getUsername();
-                    String pEmail = response.body().getEmail();
-                    String pMob = response.body().getMobileNumber();
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-
             }
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
+                Toast.makeText(getContext(), "Failedd", Toast.LENGTH_SHORT).show();
 
             }
         });

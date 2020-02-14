@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="200dp"
+    android:layout_gravity="center"
     android:background="@drawable/design">
 
 
-
     <ImageView
-        android:id="@+id/imgpro"
+        android:id="@+id/fragment_profile_imageView"
         android:layout_width="165dp"
         android:layout_height="127dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/login_icon"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login_icon" />
 
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/profile_container"-->
@@ -23,63 +23,51 @@
 <!--        android:layout_height="wrap_content"/>-->
 
     <TextView
-        android:id="@+id/epusername"
+        android:id="@+id/fragment_profile_userName"
         android:layout_width="251dp"
         android:layout_height="40dp"
-        android:layout_marginStart="44dp"
         android:layout_marginTop="62dp"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgpro" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_profile_imageView" />
 
 
     <TextView
-        android:id="@+id/epemail"
+        android:id="@+id/fragment_profile_email"
         android:layout_width="251dp"
         android:layout_height="40dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/epusername" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_profile_userName" />
 
     <TextView
-        android:id="@+id/epmobile"
+        android:id="@+id/fragment_profile_mobileNo"
         android:layout_width="251dp"
         android:layout_height="40dp"
-        android:layout_marginStart="44dp"
         android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.603"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/epaddress" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_profile_address" />
+
+
 
     <TextView
-        android:id="@+id/epmobile2"
+        android:id="@+id/fragment_profile_address"
         android:layout_width="251dp"
         android:layout_height="40dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="629dp" />
-
-    <TextView
-        android:id="@+id/epaddress"
-        android:layout_width="251dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="44dp"
         android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/epemail" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_profile_email" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

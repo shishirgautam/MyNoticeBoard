@@ -48,7 +48,7 @@ public interface RetrofitInterface {
             @Field("permanent_address") String permanent_address);
 
     @GET("users/me/")
-    Call<UserModel> getUserProfiles();
+    Call<UserModel> getUserProfiles(@Header("auth-token") String token);
 
 
     @FormUrlEncoded
