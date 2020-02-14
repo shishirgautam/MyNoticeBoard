@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
-        android:text="Write Something....saasd." />
+        android:hint="Write Something....saasd." />
 
     <Button
         android:id="@+id/pushcomment"

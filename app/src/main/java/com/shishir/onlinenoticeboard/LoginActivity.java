@@ -2,8 +2,14 @@ package com.shishir.onlinenoticeboard;
 
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+        Gyro();
         Username = findViewById(R.id.etusername);
         Password = findViewById(R.id.etpassword);
         login = findViewById(R.id.btn_login);
@@ -75,12 +83,42 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, MyDashboardActivity.class);
             startActivity(intent);
         } else {
+//            Toast.makeText(LoginActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);//if username and password is wrong then real device vibrates
+            vibrator.vibrate(5000);
             Toast.makeText(this, "Invalid login", Toast.LENGTH_SHORT).show();
         }
-
     }
 
-}
+        private void Gyro() {
+            SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+            Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+
+            SensorEventListener gyroEventListener = new SensorEventListener() {
+                @Override
+                public void onSensorChanged(SensorEvent event) {
+                    if (event.values[2] > 0.5f) {        // anticlockwise
+                        Log.d("gyro", "tilted left");
+                        Toast.makeText(LoginActivity.this, "tilted left", Toast.LENGTH_SHORT).show();
+                    } else if (event.values[2] < -0.5f) {     // clockwise
+                        Toast.makeText(LoginActivity.this, "right tilted", Toast.LENGTH_SHORT).show();
+                        check();
+                    }
+                }
+
+                @Override
+                public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+                }
+            };
+//        register listener
+            sensorManager.registerListener(gyroEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+        }
+    }
+
+
+
 
 
 

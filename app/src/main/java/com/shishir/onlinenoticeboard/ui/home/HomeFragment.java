@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment {
             bundle.putString("post",post);
             commentFragment.setArguments(bundle);
             ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.dashboard_container,commentFragment)
+                    .replace(R.id.nav_host_fragment,commentFragment)
                     .commit();
         }
 

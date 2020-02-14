@@ -14,6 +14,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface RetrofitInterface {
 
@@ -53,10 +54,7 @@ public interface RetrofitInterface {
 
     @FormUrlEncoded
     @POST("api/web/auth/comments/{id}/posts/")
-    Call<CommentModel> postComments(
-            @Field("comments") String comments
-         //   @Field("postId") String postId
-    );
+    Call<CommentModel> postComments(@Header("auth-token") String token,@Field("comments") String comments,@Path("id") String postId);
 
 
 }
