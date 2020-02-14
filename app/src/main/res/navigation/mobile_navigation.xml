@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.shishir.onlinenoticeboard.ui.comment.CommentFragment"
+        android:name="com.shishir.onlinenoticeboard.ui.home.HomeFragment"
         android:label="@string/title_home"
-        android:icon="@drawable/ic_home_black_24dp"
         tools:layout="@layout/fragment_home" />
+
     <fragment
         android:id="@+id/navigation_comment"
         android:name="com.shishir.onlinenoticeboard.ui.comment.CommentFragment"
-        android:label="Comment"
+        android:label="@string/title_comment"
         tools:layout="@layout/fragment_comment" />
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.shishir.onlinenoticeboard.ui.profile.ProfileFragment"
-        android:label="Profile"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

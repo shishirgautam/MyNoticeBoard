@@ -56,22 +56,12 @@
         android:layout_toEndOf="@+id/imgview"
         android:hint="Description" />
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="70dp"
-        android:src="@drawable/ic_chat" />
-
-
-    <Button
+    <ImageButton
         android:id="@+id/commid"
-        android:background="@color/drakgrey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="90dp"
+        android:layout_marginLeft="190dp"
         android:layout_marginTop="100dp"
         android:layout_toEndOf="@+id/imgview"
-        android:hint="Comment"/>
-
+        android:src="@drawable/ic_chat"/>
 </RelativeLayout>

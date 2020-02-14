@@ -1,12 +1,13 @@
 package com.shishir.onlinenoticeboard.ui.home;
 
 import android.content.Context;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,9 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.shishir.onlinenoticeboard.DashboardActivity;
-import com.shishir.onlinenoticeboard.LoginActivity;
 import com.shishir.onlinenoticeboard.R;
 import com.shishir.onlinenoticeboard.api.BLL;
 import com.shishir.onlinenoticeboard.api.RetrofitApi;
@@ -25,8 +23,9 @@ import com.shishir.onlinenoticeboard.api.RetrofitInterface;
 import com.shishir.onlinenoticeboard.model.NoticeModel;
 import com.shishir.onlinenoticeboard.ui.comment.CommentFragment;
 
+
 import java.util.List;
-import java.util.zip.Inflater;
+
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -39,7 +38,7 @@ public class HomeFragment extends Fragment {
     private  TextView Title,Description,Comment;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        recyclerView = root.findViewById(R.id.notices_container);
+        recyclerView = root.findViewById(R.id.dashboard_container);
 
         context = getContext();
         RetrofitInterface api = RetrofitApi.getInstance().create(RetrofitInterface.class);
@@ -95,7 +94,8 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     StartComment(noticeViewHolder.textViewId.getText().toString(),
-                            noticeViewHolder.title.getText().toString(),noticeViewHolder.description.getText().toString());
+                            noticeViewHolder.title.getText().toString(),
+                            noticeViewHolder.description.getText().toString());
                 }
             });
         }
@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
         }
 
         public void StartComment(String PostID, String title, String post){
-            CommentFragment commentFragment = new CommentFragment();
+            CommentFragment commentFragment= new CommentFragment();
             Bundle bundle = new Bundle();
             bundle.putString("postid",PostID);
             bundle.putString("title",title);
@@ -121,11 +121,12 @@ public class HomeFragment extends Fragment {
 
             CircleImageView imgview;
             TextView title, description, comment ,textViewId;
-            Button buttonComment,pushcomment;
+            Button pushcomment;
+            ImageButton buttonComment;
 
             public NoticeViewHolder(@NonNull View noticeView) {
                 super(noticeView);
-    //            imgview = noticeView.findViewById(R.id.imgview);
+                // imgview = noticeView.findViewById(R.id.imgview);
                 textViewId = noticeView.findViewById(R.id.pid);
                 title = noticeView.findViewById(R.id.title);
                 description = noticeView.findViewById(R.id.desc);

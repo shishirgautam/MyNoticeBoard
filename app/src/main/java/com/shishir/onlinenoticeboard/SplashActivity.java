@@ -25,9 +25,10 @@ public class SplashActivity extends AppCompatActivity {
 
 
                 if (username.equals("admin") && password.equals("admin")){
-                    Intent intent = new Intent(SplashActivity.this,DashboardActivity.class);
-                    startActivity(intent);
-                    finish();     }
+//                    Intent intent = new Intent(SplashActivity.this,DashboardActivity.class);
+//                    startActivity(intent);
+//                    finish();
+                 }
                 else {
                     Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
                     startActivity(intent);

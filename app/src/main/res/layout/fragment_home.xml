@@ -9,8 +9,11 @@
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notices_container"
+        android:id="@+id/dashboard_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
+
 
 </RelativeLayout>
