@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_comment"
         android:icon="@drawable/ic_comment_black"
-        android:title="@string/title_comment" />
+        android:title="@string/title_all" />
 
     <item
         android:id="@+id/navigation_profile"

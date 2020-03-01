@@ -4,7 +4,7 @@ public class NoticeModel {
     private String _id;
     private String title;
     private String description;
-
+    private UserModel postedby;
     public NoticeModel(String _id, String title, String description) {
         this._id = _id;
         this.title = title;
@@ -34,5 +34,13 @@ public class NoticeModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public UserModel getPostedby() {
+        return postedby;
+    }
+
+    public void setPostedby(UserModel postedby) {
+        this.postedby = postedby;
     }
 }

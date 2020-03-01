@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/design"
+    android:padding="60dp"
+    android:gravity="center"
+    android:background="@drawable/colordesign"
     tools:context=".RegisterActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:padding="10dp"
         android:src="@drawable/login_icon" />
 

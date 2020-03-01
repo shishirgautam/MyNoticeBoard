@@ -1,5 +1,7 @@
 package com.shishir.onlinenoticeboard.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -23,7 +25,7 @@ public class UserModel {
     @SerializedName("mobile_number")
     @Expose
     private String mobileNumber;
-    @SerializedName("temporary_addreess")
+    @SerializedName("temporary_address")
     @Expose
     private String temporary_addreess;
     @SerializedName("permanent_address")
@@ -33,7 +35,10 @@ public class UserModel {
     @Expose
     private String token;
 
-    public UserModel(String username,String password){
+    public UserModel() {
+    }
+
+    public UserModel(String username, String password){
         this.username = username;
         this.password = password;
     }
@@ -125,4 +130,10 @@ public class UserModel {
 //        this.token = token;
 //    }
 
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "aaa";
+    }
 }

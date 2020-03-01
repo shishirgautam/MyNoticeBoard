@@ -1,10 +1,12 @@
 package com.shishir.onlinenoticeboard.ui.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,9 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.shishir.onlinenoticeboard.LoginActivity;
 import com.shishir.onlinenoticeboard.R;
 import com.shishir.onlinenoticeboard.StrictMode.StrictModeC;
-import com.shishir.onlinenoticeboard.api.BLL;
 import com.shishir.onlinenoticeboard.api.RetrofitApi;
 import com.shishir.onlinenoticeboard.api.RetrofitInterface;
 import com.shishir.onlinenoticeboard.model.UserModel;
@@ -27,6 +29,7 @@ public class ProfileFragment extends Fragment {
     private ImageView imgprofile;
     private TextView pUsername, pEmail, pAddress, pMob;
     Context context;
+    private Button buttonLogout;
 
 
     public View onCreateView(
@@ -39,6 +42,7 @@ public class ProfileFragment extends Fragment {
         pEmail = root.findViewById(R.id.fragment_profile_email);
         pAddress = root.findViewById(R.id.fragment_profile_address);
         pMob = root.findViewById(R.id.fragment_profile_mobileNo);
+        buttonLogout = root.findViewById(R.id.button_logout);
 
 
         context = getContext();
@@ -46,7 +50,7 @@ public class ProfileFragment extends Fragment {
         StrictModeC.StrictMode();
 
 
-        final Call<UserModel> getUserProfiles = api.getUserProfiles(BLL.token);
+        final Call<UserModel> getUserProfiles = api.getMyProfile(RetrofitApi.token);
         getUserProfiles.enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
@@ -59,18 +63,23 @@ public class ProfileFragment extends Fragment {
                     pEmail.setText(response.body().getEmail());
                     pMob.setText(response.body().getMobileNumber());
                     pAddress.setText(response.body().getPermanentAddress());
-
                 }
             }
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
-                Toast.makeText(getContext(), "Failedd", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
 
             }
         });
-
-
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getContext().startActivity(new Intent(getContext(), LoginActivity.class));
+                RetrofitApi.token = "";
+                getActivity().finish();
+            }
+        });
         return root;
 
     }

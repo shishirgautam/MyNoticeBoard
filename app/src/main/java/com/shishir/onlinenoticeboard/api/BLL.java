@@ -10,7 +10,6 @@ import retrofit2.Response;
 
 public class BLL {
     boolean isSuccess = false;
-    public static  String token;
 
     public boolean LoginBLL(UserModel userModel) {
 
@@ -20,7 +19,7 @@ public class BLL {
         try{
             StrictModeC.StrictMode();
             Response<UserModel> loginRespose = call.execute();
-              token = loginRespose.body().getToken();
+              RetrofitApi.token = loginRespose.body().getToken();
 //              token = token + loginRespose.body().getToken()
             if(loginRespose.code()==200){
                 return true;
@@ -43,6 +42,7 @@ public class BLL {
                 user.getPermanentAddress()
         );
         try{
+            StrictModeC.StrictMode();
             Response<UserModel> registerRespose = Register.execute();
             if(registerRespose.code() == 200){
                 return true;

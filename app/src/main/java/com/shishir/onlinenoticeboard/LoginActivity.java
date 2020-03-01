@@ -24,7 +24,7 @@ import com.shishir.onlinenoticeboard.response.LoginRegisterResponse;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText Username, Password;
+    private EditText usernameLogin, passwordLogin;
     private Button login, link;
     public static String Token = "";
     Context context;
@@ -39,8 +39,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Gyro();
-        Username = findViewById(R.id.etusername);
-        Password = findViewById(R.id.etpassword);
+        usernameLogin = findViewById(R.id.etusername);
+        passwordLogin = findViewById(R.id.etpassword);
+//        Username.setText("jeevan");
+//        Password.setText("jeevan");
         login = findViewById(R.id.btn_login);
         link = findViewById(R.id.btnLink);
         link.setOnClickListener(new View.OnClickListener() {
@@ -61,15 +63,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void check() {
-        String user = Username.getText().toString();
-        String pass = Password.getText().toString();
+        String user = usernameLogin.getText().toString();
+        String pass = passwordLogin.getText().toString();
 
-        if (TextUtils.isEmpty(Username.getText())) {
-            Username.setError("Enter username");
+        if (TextUtils.isEmpty(usernameLogin.getText())) {
+            usernameLogin.setError("Enter username");
             return;
 
-        } else if (TextUtils.isEmpty(Password.getText())) {
-            Password.setError("Enter password");
+        } else if (TextUtils.isEmpty(passwordLogin.getText())) {
+            passwordLogin.setError("Enter password");
             return;
         }
 
@@ -82,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         if (loggedIn) {
             Intent intent = new Intent(LoginActivity.this, MyDashboardActivity.class);
             startActivity(intent);
+            finish();
         } else {
 //            Toast.makeText(LoginActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);//if username and password is wrong then real device vibrates

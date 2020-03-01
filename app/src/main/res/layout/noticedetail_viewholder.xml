@@ -1,68 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
-    android:orientation="vertical"
-    android:padding="10dp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:padding="4dp"
     android:background="@color/blue"
     >
 
-    <TextView
-        android:id="@+id/pid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
-
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgview"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@drawable/login_icon"
         tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/titleid"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_margin="4dp"
+        android:padding="4dp"
         android:layout_height="wrap_content"
-        android:hint="titleid"
-        android:visibility="invisible" />
+        >
+        <TextView
+            android:id="@+id/postview_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_toEndOf="@+id/imgview"
+            android:hint="Title" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_toEndOf="@+id/imgview"
-        android:hint="Title" />
+        <TextView
+            android:id="@+id/postview_description"
+            android:layout_margin="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toEndOf="@+id/imgview"
+            android:hint="Description" />
+        <LinearLayout
 
-    <TextView
-        android:id="@+id/descid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="titleid"
-        android:visibility="invisible" />
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/postview_postedby"
+                android:layout_width="wrap_content"
+                android:hint="Posted By"
+                android:layout_weight="1"
+                android:layout_height="match_parent"/>
+            <ImageButton
+                android:id="@+id/postview_button_comment"
+                android:layout_width="90dp"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chat"/>
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="40dp"
-        android:layout_toEndOf="@+id/imgview"
-        android:hint="Description" />
-
-    <ImageButton
-        android:id="@+id/commid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="190dp"
-        android:layout_marginTop="100dp"
-        android:layout_toEndOf="@+id/imgview"
-        android:src="@drawable/ic_chat"/>
-</RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

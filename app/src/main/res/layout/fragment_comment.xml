@@ -2,31 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:padding="8dp"
+    android:orientation="vertical"
+    android:background="@drawable/colordesign">
     <TextView
-        android:id="@+id/ptitle"
+        android:layout_marginTop="20dp"
+        android:text="All Notices"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"/>
+        android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/post"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_allnotices"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/comment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:hint="Write Something....saasd." />
-
-    <Button
-        android:id="@+id/pushcomment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Comment" />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

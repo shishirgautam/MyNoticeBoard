@@ -4,8 +4,13 @@
     <string name="btn_link_to_login">Already registred! Login Me.</string>
     <string name="title_activity_my_dashboard">MyDashboardActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_comment">Comment</string>
+    <string name="title_all">Notices</string>
     <string name="title_profile">Profile</string>
+
+    <string name="usernameerr">Enter Valid UserName</string>
+    <string name="emailerr">Enter Valid Email</string>
+    <string name="passworderr">Enter Valid password</string>
+    <string name="mobilenoerr">Enter Valid Mobile_No</string>
 
 
 </resources>

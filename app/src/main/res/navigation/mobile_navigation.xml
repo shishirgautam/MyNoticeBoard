@@ -13,9 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_comment"
-        android:name="com.shishir.onlinenoticeboard.ui.comment.CommentFragment"
-        android:label="@string/title_comment"
-        tools:layout="@layout/fragment_comment" />
+        android:name="com.shishir.onlinenoticeboard.ui.comment.AllNotice"
+        android:label="@string/title_all"
+        tools:layout="@layout/fragment_comment" >
+        <argument
+            android:name="postid"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"

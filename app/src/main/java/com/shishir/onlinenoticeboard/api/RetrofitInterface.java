@@ -29,8 +29,13 @@ public interface RetrofitInterface {
             @Body UserModel model
     );
 
-    @GET("/api/web/auth/posts/")
-    Call<List<NoticeModel>> Notice(
+    @GET("/api/posts/")
+    Call<List<NoticeModel>> getNotice(
+                    @Header("auth-token")String token
+            );
+
+    @GET("/api/posts/mine")
+    Call<List<NoticeModel>> getMyNotice(
             @Header("auth-token")String token
     );
 
@@ -38,7 +43,7 @@ public interface RetrofitInterface {
 //    Call<Response> token(@Header("Authorization") String token);
 
     @FormUrlEncoded
-    @POST("users/register/")
+    @POST("users/register")
     Call<UserModel> Register(
             @Field("username") String username,
             @Field("email") String email,
@@ -48,8 +53,15 @@ public interface RetrofitInterface {
             @Field("temporary_address") String temporary_addrrss,
             @Field("permanent_address") String permanent_address);
 
+    @FormUrlEncoded
+    @POST("/api/posts/")
+    Call<NoticeModel> postNotice(
+            @Header("auth-token") String token,
+            @Field("title") String username,
+            @Field("description") String password);
+
     @GET("users/me/")
-    Call<UserModel> getUserProfiles(@Header("auth-token") String token);
+    Call<UserModel> getMyProfile(@Header("auth-token") String token);
 
 
     @FormUrlEncoded

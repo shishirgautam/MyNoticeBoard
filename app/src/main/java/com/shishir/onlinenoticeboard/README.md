@@ -6,10 +6,14 @@
  So the application is design in digitalized purpose of education system and it features is help the growth of organization behavior.
 
  ### Features of your project
--
+
+- user can post the notices.
+- user can see the all notices.
+- user view the profile.
 
 
- [Youtube video link]( putlink "Online NoticeBoard System")
+
+ [Youtube video link](  https://www.youtube.com/watch?v=IFfwhuKXouk "Online NoticeBoard System")
 
  > Retrofit and its uses
 
